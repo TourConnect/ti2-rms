@@ -1,0 +1,50 @@
+name: Node.js Package
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sed -i 's/"file:.*"/"latest"/' package.json
+      - name: install dependencies
+        run: npm i
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+        env:
+          ti2_rms_server: 'https://testrestapi8.rmscloud.com'
+          ti2_rms_agentId: '15'
+          ti2_rms_agentPassword: '1h&29$vk449f8'
+          ti2_rms_clientId: '11281'
+          ti2_rms_clientPassword: '6k!Dp$N4'
+          ti2_rms_jwtKey: 'Reliance-Overload4-Lyrics'
+  tag:
+    if: github.ref == 'refs/heads/main'
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: tool3/bump@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          unrelated: true
+          branch: main
+  publish-npm:
+    if: github.ref == 'refs/heads/main'
+    needs: tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: sed -i 's/"file:.*"/"latest"/' package.json
+      - name: install dependencies
+        run: npm i
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
