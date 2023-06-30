@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`auth tests should be able to get a list or booking fields 1`] = `
-[
+Array [
   "propertyId",
   "startDate",
   "endDate",
@@ -14,7 +14,7 @@ exports[`auth tests should be able to get a list or booking fields 1`] = `
 `;
 
 exports[`auth tests should be able to translate a booking 1`] = `
-{
+Object {
   "adults": 1,
   "agent": null,
   "allDay": false,
@@ -28,7 +28,7 @@ exports[`auth tests should be able to translate a booking 1`] = `
   "editable": true,
   "end": "2023-06-24 23:59:59",
   "endDate": "2023-06-24 23:59:59",
-  "holder": {
+  "holder": Object {
     "emailAddress": "",
     "fullName": "Vic Mann",
     "name": "Vic",
@@ -46,7 +46,7 @@ exports[`auth tests should be able to translate a booking 1`] = `
   "pickupPoint": null,
   "pickupPointId": null,
   "pickupRequested": null,
-  "price": {
+  "price": Object {
     "currency": null,
     "currencyPrecision": null,
     "net": null,
@@ -64,6 +64,6 @@ exports[`auth tests should be able to translate a booking 1`] = `
   "startDate": "2023-06-23 00:00:00",
   "status": "Unconfirmed",
   "supplierBookingId": "215718",
-  "unitItems": [],
+  "unitItems": Array [],
 }
 `;
