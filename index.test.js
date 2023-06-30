@@ -1,13 +1,11 @@
 const R = require('ramda')
 const axios = require('axios');
-const ti2 = require('ti2');
 
 const { typeDefs: productTypeDefs, query: productQuery } = require('./node_modules/ti2/controllers/graphql-schemas/product');
 const { typeDefs: availTypeDefs, query: availQuery } = require('./node_modules/ti2/controllers/graphql-schemas/availability');
 const { typeDefs: bookingTypeDefs, query: bookingQuery } = require('./node_modules/ti2/controllers/graphql-schemas/booking');
 const { typeDefs: rateTypeDefs, query: rateQuery } = require('./node_modules/ti2/controllers/graphql-schemas/rate');
 const { typeDefs: pickupTypeDefs, query: pickupQuery } = require('./node_modules/ti2/controllers/graphql-schemas/pickup-point');
-const { translateBooking } = require('./resolvers/booking');
 const rmsBooking = require('./__apiReference__/booking.json');
 
 const typeDefsAndQueries = {
