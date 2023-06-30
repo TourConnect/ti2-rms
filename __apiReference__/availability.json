@@ -1,0 +1,238 @@
+{
+  "request": {
+    "propertyId": 1,
+    "dateFrom": "2023-06-06T21:23:49.369Z",
+    "dateTo": "2023-06-06T21:23:49.369Z",
+    "RemoveDirtyRoomsFromAvailabilityForToday": true,
+    "roomStatistics": "ignore",
+    "availabilityFilter": "house"
+  },
+  "response": {
+    "categories": [
+      {
+        "id": 1,
+        "name": "Deluxe 001",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 2
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Deluxe 002",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 1
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Deluxe 003",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 5
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Deluxe 004",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 8
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 5
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Deluxe 006",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 2
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Meeting Room",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 0
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Deluxe 012",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 0
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Deluxe 015",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 1
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Deluxe 018",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 0
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "name": "Deluxe 031",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 3
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "name": "Tub Bath",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 2
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 51,
+        "name": "XBOX ONE",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 4
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "name": "Simple Room",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 3
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 54,
+        "name": "Two Bedroom",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 8
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": 57,
+        "name": "Pace Virtual Suite",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 0
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 0
+          }
+        ]
+      },
+      {
+        "id": 63,
+        "name": "Testforrestriction",
+        "availability": [
+          {
+            "theDate": "2023-06-06",
+            "count": 1
+          },
+          {
+            "theDate": "2023-06-07",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  }
+}

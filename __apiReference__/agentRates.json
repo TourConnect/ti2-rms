@@ -1,0 +1,112 @@
+[
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1409,
+    "rateName": "10th Anniv. Pkg",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1302,
+    "rateName": "Winter Escape Old",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1302,
+    "rateName": "Winter Escape Old",
+    "propertyId": 1,
+    "propertyName": "Test property 1"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1379,
+    "rateName": "Winter Escape~",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1379,
+    "rateName": "Winter Escape~",
+    "propertyId": 1,
+    "propertyName": "Test property 1"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1352,
+    "rateName": "Winter Warmer Package",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1352,
+    "rateName": "Winter Warmer Package",
+    "propertyId": 1,
+    "propertyName": "Test property 1"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1353,
+    "rateName": "Winter Warmer Package~",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 1353,
+    "rateName": "Winter Warmer Package~",
+    "propertyId": 1,
+    "propertyName": "Test property 1"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 49,
+    "rateName": "ZStandard",
+    "propertyId": 3,
+    "propertyName": "Test property 2"
+  },
+  {
+    "fromDate": "1900-01-01 00:00:00",
+    "toDate": "1900-01-01 00:00:00",
+    "town": "x",
+    "countryId": 13,
+    "rateId": 49,
+    "rateName": "ZStandard",
+    "propertyId": 1,
+    "propertyName": "Test property 1"
+  }
+]

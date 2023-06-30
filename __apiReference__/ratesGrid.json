@@ -1,0 +1,68 @@
+{
+  "request": {
+    "adults": 5,
+    "children": 1,
+    "infants": 0,
+    "agentId": 1,
+    "categoryIds": [
+      4,
+      3
+    ],
+    "arrival": "2023-06-17 00:00:00",
+    "departure": "2023-06-18 00:00:00",
+    "propertyId": 1,
+    "rateIds": [
+      1353
+    ]
+  },
+  "response": {
+    "categories": [
+        {
+            "categoryId": 3,
+            "name": "Deluxe 003",
+            "rates": [
+                {
+                    "rateId": 1353,
+                    "name": "Winter Warmer Package~",
+                    "dayBreakdown": [
+                        {
+                            "availableAreas": 7,
+                            "closedOnArrival": false,
+                            "closedOnDeparture": false,
+                            "dailyRate": 423.00,
+                            "theDate": "2023-06-17 00:00:00",
+                            "minStay": 0,
+                            "minStayOnArrival": 0,
+                            "maxStay": 0,
+                            "stopSell": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "categoryId": 4,
+            "name": "Deluxe 004",
+            "rates": [
+                {
+                    "rateId": 1353,
+                    "name": "Winter Warmer Package~",
+                    "dayBreakdown": [
+                        {
+                            "availableAreas": 13,
+                            "closedOnArrival": false,
+                            "closedOnDeparture": false,
+                            "dailyRate": 722.00,
+                            "theDate": "2023-06-17 00:00:00",
+                            "minStay": 0,
+                            "minStayOnArrival": 0,
+                            "maxStay": 0,
+                            "stopSell": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+}

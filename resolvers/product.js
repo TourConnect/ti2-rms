@@ -19,16 +19,16 @@ const resolvers = {
       }
     },
     options: item => {
-      return R.pathOr([], ['options'], item).map(option => ({
-        optionId: R.path(['id'], option),
-        optionName: R.path(['name'], option),
-        units: [{
-          unitId: 'occupants',
-          unitName: 'Occupants',
+      return R.pathOr([], ['agentRates'], item).map(agentRate => ({
+        optionId: R.path(['rateId'], agentRate),
+        optionName: R.path(['rateName'], agentRate),
+        units: R.pathOr([], ['categories'], item).map(category => ({
+          unitId: category.id,
+          unitName: category.name,
           restrictions: {
-            paxCount: R.path(['maxOccupantsPerCategory'], option)
+            paxCount: R.path(['maxOccupantsPerCategory'], category)
           },
-        }],
+        })),
       }));
     },
   },

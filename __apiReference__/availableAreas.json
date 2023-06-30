@@ -1,0 +1,72 @@
+[
+  {
+    "id": 7,
+    "name": "01 007",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "Occupied"
+  },
+  {
+    "id": 8,
+    "name": "01 008",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "Occupied"
+  },
+  {
+    "id": 29,
+    "name": "01 029",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 32,
+    "name": "01 032",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 33,
+    "name": "01 033",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "Occupied"
+  },
+  {
+    "id": 10,
+    "name": "01 010",
+    "categoryId": 3,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 22,
+    "name": "01 022",
+    "categoryId": 4,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 23,
+    "name": "01 023",
+    "categoryId": 4,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 24,
+    "name": "01 024",
+    "categoryId": 4,
+    "propertyId": 1,
+    "cleanStatus": "VacantClean"
+  },
+  {
+    "id": 25,
+    "name": "01 025",
+    "categoryId": 4,
+    "propertyId": 1,
+    "cleanStatus": "Occupied"
+  }
+]
