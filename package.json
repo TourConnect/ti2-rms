@@ -1,6 +1,6 @@
 {
   "name": "ti2-rms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RMS TI2's plugin",
   "main": "index.js",
   "scripts": {
