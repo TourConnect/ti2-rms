@@ -27,15 +27,24 @@ class Plugin {
     }
     const pluginObj = this;
     this.tokenTemplate = () => ({
+      tourConnectAgentId: {
+        type: 'text',
+        regExp: /[0-9]/,
+        description: 'Agent id (TourConnect)',
+      },
+      tourConnectAgentPassword: {
+        type: 'text',
+        regExp: /(.*)+/,
+        description: 'Agent Password (TourConnect)',
+      },
+      server: {
+        type: 'text',
+        regExp: /(.*)+/,
+      },
       agentId: {
         type: 'text',
         regExp: /[0-9]/,
         description: 'Agent id',
-      },
-      agentPassword: {
-        type: 'text',
-        regExp: /(.*)+/,
-        description: 'Agent Password',
       },
       clientId: {
         type: 'text',
@@ -110,8 +119,8 @@ class Plugin {
   }
   async _getCreds({
     axios,
-    // agentId = this.agentId,
-    // agentPassword = this.agentPassword,
+    tourConnectAgentId = this.agentId,
+    tourConnectAgentPassword = this.agentPassword,
     clientId,
     clientPassword,
     server = this.server,
@@ -134,8 +143,8 @@ class Plugin {
     // now obtain an authentication token
     const authToken = await this.cache.getOrExec({
       fnParams: [{
-        agentId: this.agentId,
-        agentPassword: this.agentPassword,
+        agentId: tourConnectAgentId || this.agentId,
+        agentPassword: tourConnectAgentPassword || this.agentPassword,
         clientUrl,
         clientId,
         clientPassword,
