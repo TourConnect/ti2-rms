@@ -148,7 +148,8 @@ class Plugin {
         clientUrl,
         clientId,
         clientPassword,
-        moduleType: ['pointOfSale', 'kiosk'],
+        // moduleType: ['pointOfSale', 'kiosk'],
+        moduleType: ['distribution'],
       }],
       fn: async params => {
         const data = R.omit(['clientUrl'], params);
