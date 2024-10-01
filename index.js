@@ -181,13 +181,8 @@ class Plugin {
   async searchProducts({
     axios,
     token,
-    payload,
-    typeDefsAndQueries: {
-      productTypeDefs,
-      productQuery,
-    },
+    payload: { forceRefresh } = {},
   }) {
-    return { products: [] }
     const {
       clientUrl,
       authToken,
@@ -195,31 +190,21 @@ class Plugin {
     const headers = getHeaders({
       authToken,
     });
-    // get all agent rates (agent rates is options)
-    const allAgentRates = R.pathOr([], ['data'], await axios({
+    const allProperties = R.pathOr([], ['data'], await axios({
       method: 'get',
-      url: `${clientUrl}/agents/${token.agentId || this.agentId}/rates`,
       headers,
-    }));
-    let productResults = R.pathOr([], ['data'], await axios({
-      method: 'get',
       url: `${clientUrl}/properties?modelType=full`,
-      headers,
-    }));
-    // get all currency options
-    const products = await Promise.map(productResults, async property => {
-      const currencies = R.path(['data'], await axios({
-        method: 'get',
-        url: `${clientUrl}/properties/${property.id}/currency`,
-        headers,
-      }));
-
-      // product getter
-      const categories = [];
+    })).filter(p => !p.inactive);
+    // all room types
+    const categories = [];
+    await Promise.each(allProperties, async property => {
       let currentResults = new Array(100).fill({});
       let offset = 0;
       while (currentResults.length === 100) {
-        currentResults = R.pathOr([], ['data'], await axios({
+        currentResults = R.pathOr([], ['data'], await this._cacheAxios({
+          forceRefresh,
+          axios,
+          ttl: 60 * 60 * 24 * 7, // 7 days
           method: 'get',
           url: `${clientUrl}/categories?propertyId=${property.id}&offset=${offset}&modelType=full`,
           headers,
@@ -229,17 +214,88 @@ class Plugin {
         }
         offset += 100;
       }
-      let agentRates = allAgentRates.filter(ar => ar.propertyId === property.id);
-      // console.log(allAgentRates, typeof property.id)
-      // do not return products that do not have agent rates
-      if (!agentRates.length) return null;
-      return translateProduct({
-        rootValue: { ...property, currencies, agentRates, categories },
-        typeDefs: productTypeDefs,
-        query: productQuery,
-      });
     });
-    return ({ products: products.filter(Boolean) });
+    const allAgentRates = R.pathOr([], ['data'], await this._cacheAxios({
+      axios,
+      method: 'get',
+      url: `${clientUrl}/agents/${token.agentId || this.agentId}/rates`,
+      headers,
+    }));
+    const productFields = [{
+      id: 'propertyId',
+      title: 'Property',
+      type: 'extended-option',
+      requiredForAvailability: true,
+      requiredForCalendar: true,
+      requiredForBooking: true,
+      options: allProperties.map(property => ({
+        value: property.id,
+        label: property.name,
+      })),
+    }, {
+      id: 'startDate',
+      title: 'Arrival',
+      type: 'date',
+      requiredForAvailability: true,
+      requiredForBooking: true,
+    },{
+      id: 'endDate',
+      title: 'Departure',
+      type: 'date',
+      requiredForAvailability: true,
+      requiredForBooking: true,
+    },{
+      id: 'rateId',
+      title: 'Rate Type',
+      type: 'extended-option',
+      requiredForAvailability: true,
+      requiredForBooking: true,
+      filterableBy: 'propertyId',
+      options: allAgentRates.map(rate => ({
+        value: rate.rateId,
+        label: rate.rateName,
+        propertyId: rate.propertyId,
+      })),
+    }, {
+      id: 'categoryId',
+      title: 'Room Type',
+      type: 'extended-option',
+      requiredForAvailability: true,
+      requiredForCalendar: true,
+      requiredForBooking: true,
+      filterableBy: 'propertyId',
+      options: categories.filter(p => !p.inactive).map(category => ({
+        value: category.id,
+        label: category.name,
+        propertyId: category.propertyId,
+      })),
+    }, {
+      id: 'adults',
+      title: 'Adults',
+      type: 'count',
+      requiredForBooking: true,
+    }, {
+      id: 'children',
+      title: 'Children',
+      type: 'count',
+      requiredForBooking: true,
+    }, {
+      id: 'infants',
+      title: 'Infants',
+      type: 'count',
+      requiredForBooking: true,
+    }];
+    await this.cache.save({
+      key: {
+        ...token,
+        type: 'productFields',
+      },
+      value: productFields,
+    });
+    return {
+      products: [],
+      productFields,
+    };
   }
 
 
@@ -470,118 +526,10 @@ class Plugin {
     token,
     payload: { forceRefresh } = {},
   }) {
-    const {
-      clientUrl,
-      authToken,
-    } = await this._getCreds({ ...token, axios });
-    const headers = getHeaders({
-      authToken,
-    });
-    const allProperties = R.pathOr([], ['data'], await axios({
-      method: 'get',
-      headers,
-      url: `${clientUrl}/properties?modelType=full`,
-    })).filter(p => !p.inactive);
-    // all room types
-    const categories = [];
-    await Promise.each(allProperties, async property => {
-      let currentResults = new Array(100).fill({});
-      let offset = 0;
-      while (currentResults.length === 100) {
-        currentResults = R.pathOr([], ['data'], await this._cacheAxios({
-          forceRefresh,
-          axios,
-          ttl: 60 * 60 * 24 * 7, // 7 days
-          method: 'get',
-          url: `${clientUrl}/categories?propertyId=${property.id}&offset=${offset}&modelType=full`,
-          headers,
-        }));
-        if (currentResults.length > 0) {
-          categories.push(...currentResults);
-        }
-        offset += 100;
-      }
-    });
-    const allAgentRates = R.pathOr([], ['data'], await this._cacheAxios({
-      axios,
-      method: 'get',
-      url: `${clientUrl}/agents/${token.agentId || this.agentId}/rates`,
-      headers,
-    }));
-    const productFields = [{
-      id: 'propertyId',
-      title: 'Property',
-      type: 'extended-option',
-      requiredForAvailability: true,
-      requiredForCalendar: true,
-      requiredForBooking: true,
-      options: allProperties.map(property => ({
-        value: property.id,
-        label: property.name,
-      })),
-    }, {
-      id: 'startDate',
-      title: 'Arrival',
-      type: 'date',
-      requiredForAvailability: true,
-      requiredForBooking: true,
-    },{
-      id: 'endDate',
-      title: 'Departure',
-      type: 'date',
-      requiredForAvailability: true,
-      requiredForBooking: true,
-    },{
-      id: 'rateId',
-      title: 'Rate Type',
-      type: 'extended-option',
-      requiredForAvailability: true,
-      requiredForBooking: true,
-      filterableBy: 'propertyId',
-      options: allAgentRates.map(rate => ({
-        value: rate.rateId,
-        label: rate.rateName,
-        propertyId: rate.propertyId,
-      })),
-    }, {
-      id: 'categoryId',
-      title: 'Room Type',
-      type: 'extended-option',
-      requiredForAvailability: true,
-      requiredForCalendar: true,
-      requiredForBooking: true,
-      filterableBy: 'propertyId',
-      options: categories.filter(p => !p.inactive).map(category => ({
-        value: category.id,
-        label: category.name,
-        propertyId: category.propertyId,
-      })),
-    }, {
-      id: 'adults',
-      title: 'Adults',
-      type: 'count',
-      requiredForBooking: true,
-    }, {
-      id: 'children',
-      title: 'Children',
-      type: 'count',
-      requiredForBooking: true,
-    }, {
-      id: 'infants',
-      title: 'Infants',
-      type: 'count',
-      requiredForBooking: true,
-    }];
-    await this.cache.save({
-      key: {
-        ...token,
-        type: 'productFields',
-      },
-      value: productFields,
-    });
     return {
-      productFields,
-    };
+      fields: [],
+      customFields: [],
+    }
   }
   async createBooking({
     axios,
